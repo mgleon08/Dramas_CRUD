@@ -59,7 +59,7 @@ class DramasController < ApplicationController
   private
 
   def drama_params
-    params.require(:drama).permit(:name, :description, :actor, :set, :time)
+    params.require(:drama).permit(:name, :description, :actor, :set, :time, :day)
   end
 
   def set_drama

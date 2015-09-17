@@ -2,5 +2,6 @@
 <p>劇情：</p><%= simple_format @drama.description %></br>
 <p>演員：</p><%= simple_format @drama.actor %></br>
 <span>集數：</span><%= @drama.set %><span>集</span></br></br>
+<p> 日期：</p><%= @drama.day %></br></br>
 <p>開播時間：</p><%= @drama.time %></br>
 <%= link_to "回到首頁",dramas_path%>
