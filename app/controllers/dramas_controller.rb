@@ -1,9 +1,9 @@
 class DramasController < ApplicationController
 
-  before_action :set_drama, :only=>[:show, :edit, :update, :destory]
+  before_action :set_drama, :only=>[:show, :edit, :update, :destroy]
 
   def index
-    @dramas = Drama.page(params[:page]).per(5)
+    @dramas = Drama.page(params[:page]).per(10)
 
       respond_to do|format|
       format.html
@@ -50,7 +50,7 @@ class DramasController < ApplicationController
 
   def destroy
     @drama.destroy
-    flash[:notice] = "刪除成功"
+    flash[:alert] = "刪除成功"
     redirect_to dramas_path
   end
 

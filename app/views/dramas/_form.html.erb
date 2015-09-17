@@ -1,20 +1,29 @@
+    <% if @drama.errors.any? %>
+        <ul> <% @drama.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+        </ul>
+    <% end %>
+
+  <div class="form-group">
     <div>
     <%= d.label :name,"名稱"%>
-    <%= d.text_field :name%>
+    <%= d.text_field :name, :class => "form-control" %>
     </div>
     <div>
     <%= d.label :description,"描述"%>
-    <%= d.text_area :description%>
+    <%= d.text_area :description, :class => "form-control" %>
     </div>
     <div>
     <%= d.label :actor,"演員"%>
-    <%= d.text_area :actor%>
+    <%= d.text_area :actor, :class => "form-control" %>
     </div>
     <div>
-    <%= d.label :set,"級數"%>
-    <%= d.text_field :set%>
+    <%= d.label :set,"集數"%>
+    <%= d.text_field :set, :class => "form-control" %>
     </div>
     <div>
     <%= d.label :time,"開播時間"%>
-    <%= d.text_field :time%>
+    <%= d.text_field :time, :class => "form-control" %>
     </div>
+ </div>

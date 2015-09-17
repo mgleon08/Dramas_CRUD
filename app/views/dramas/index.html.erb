@@ -1,19 +1,25 @@
 <h1>連續劇</h1>
-<table>
+<table class="table">
+    <tr>
+        <td>劇名</td>
+        <td>Action</td>
+    </tr>
 <% @dramas.each do |d|%>
   <tr>
     <td>
-    <%= d.name %>
+    <span></span><%= d.name %>
     </td>
     <td>
-    <%= link_to "顯示", drama_path(d)%>
-    <%= link_to "編輯", edit_drama_path(d)%>
-    <%= link_to "刪除", drama_path(d), :method => :delete%>
-    <%= link_to "xml", drama_path(d, :format => :xml)%>
-    <%= link_to "json", drama_path(d, :format => :json)%>
+
+    <%= link_to "顯示", drama_path(d), :class =>"btn btn-primary"%>
+    <%= link_to "編輯", edit_drama_path(d), :class =>"btn btn-success"%>
+    <%= link_to "刪除", drama_path(d), :method => :delete, :class =>"btn btn-info"%>
+    <%= link_to "xml", drama_path(d, :format => :xml), :class =>"btn btn-warning"%>
+    <%= link_to "json", drama_path(d, :format => :json), :class =>"btn btn-danger"%></br></br>
     </td>
   </tr>
+
 <% end %>
 </table>
-<%= paginate @dramas %>
-<%= link_to "新增新的連續劇" ,new_drama_path %>
+<%= paginate @dramas %></br>
+<%= link_to "新增新的連續劇" ,new_drama_path, :class =>"btn btn-danger"%>
