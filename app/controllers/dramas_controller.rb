@@ -3,7 +3,7 @@ class DramasController < ApplicationController
   before_action :set_drama, :only=>[:show, :edit, :update, :destory]
 
   def index
-    @dramas = Drama.all
+    @dramas = Drama.page(params[:page]).per(5)
   end
 
   def new
