@@ -9,6 +9,8 @@
     <%= link_to "顯示", drama_path(d)%>
     <%= link_to "編輯", edit_drama_path(d)%>
     <%= link_to "刪除", drama_path(d), :method => :delete%>
+    <%= link_to "xml", drama_path(d, :format => :xml)%>
+    <%= link_to "json", drama_path(d, :format => :json)%>
     </td>
   </tr>
 <% end %>

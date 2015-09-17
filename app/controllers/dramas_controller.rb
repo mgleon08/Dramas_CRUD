@@ -4,6 +4,12 @@ class DramasController < ApplicationController
 
   def index
     @dramas = Drama.page(params[:page]).per(5)
+
+      respond_to do|format|
+      format.html
+      format.xml{render :xml => @dramas.to_xml}
+      format.json{render :json => @dramas.to_json}
+    end
   end
 
   def new
@@ -22,6 +28,11 @@ class DramasController < ApplicationController
 
   def show
     @page_title = @drama.name
+    respond_to do|format|
+    format.html{ @page_title = @drama.name }
+    format.xml{render :xml => @drama.to_xml}
+    format.json{render :json => @drama.to_json}
+    end
   end
 
   def edit
