@@ -3,13 +3,21 @@ class DramasController < ApplicationController
   before_action :set_drama, :only=>[:show, :edit, :update, :destroy]
 
   def index
-    @dramas = Drama.page(params[:page]).per(10)
+      @dramas = Drama.order("id ASC").page(params[:page]).per(10)
 
       respond_to do|format|
-      format.html
-      format.xml{render :xml => @dramas.to_xml}
-      format.json{render :json => @dramas.to_json}
-    end
+        format.html {
+          if params[:drama_edit]
+            @drama = Drama.find( params[:drama_edit] )
+          end
+
+          if params[ :drama_new]
+            @drama = Drama.new
+          end
+        }
+        format.xml{ render :xml => @dramas.to_xml }
+        format.json{ render :json => @dramas.to_json }
+      end
   end
 
   def new
@@ -19,10 +27,11 @@ class DramasController < ApplicationController
   def create
     @drama = Drama.new(drama_params)
     if @drama.save
-    flash[:notice] = "新增成功"
-    redirect_to dramas_path
+      flash[:notice] = "新增成功"
+      redirect_to dramas_path(:page => params[:page])
     else
-    render :action => :new
+      @dramas = Drama.all
+      render "index"
     end
   end
 
@@ -39,22 +48,20 @@ class DramasController < ApplicationController
   end
 
   def update
-    @drama.update(drama_params)
     if @drama.update(drama_params)
-    flash[:notice] = "編輯成功"
-    redirect_to drama_path(@drama)
+      flash[:notice] = "編輯成功"
+      redirect_to dramas_path(:page => params[:page])
     else
-    render :action => :edit
+      @dramas = Drama.all
+      render "index"
     end
   end
 
   def destroy
     @drama.destroy
     flash[:alert] = "刪除成功"
-    redirect_to dramas_path
+    redirect_to :back
   end
-
-
 
   private
 

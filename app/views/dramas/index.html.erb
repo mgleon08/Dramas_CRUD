@@ -1,25 +1,45 @@
-<h1>連續劇</h1>
+<h1><%= link_to "連續劇", dramas_path %></h1>
+
+    <% if params[:drama_edit]%>
+    <%= form_for @drama, :url => drama_path(@drama) do |d| %>
+    <%= render :partial => 'form', :locals => { :d => d } %>
+     <%= d.submit "確定？", :class =>"btn btn-primary" %>
+    <% end %></br>
+    <%end%>
+
+    <% if params[:drama_new]%>
+    <%= form_for @drama, :url => dramas_path do |d| %>
+    <%= render :partial => 'form', :locals => { :d => d } %>
+     <%= d.submit "確定？", :class =>"btn btn-primary" %>
+    <% end %></br>
+    <%end%>
+
+
 <table class="table">
     <tr>
         <td>劇名</td>
+        <td>評分</td>
         <td>Action</td>
     </tr>
-<% @dramas.each do |d|%>
-  <tr>
+    <% @dramas.each do |d|%>
+    <tr>
     <td>
-    <span></span><%= d.name %>
+     <%= d.name %>
     </td>
     <td>
-
+     <%= d.set %>
+    </td>
+    <td>
     <%= link_to "顯示", drama_path(d), :class =>"btn btn-primary"%>
+    <%= link_to "在首頁編輯", dramas_path(:drama_edit => d,:page =>params[:page]), :class =>"btn btn-success"%>
     <%= link_to "編輯", edit_drama_path(d), :class =>"btn btn-success"%>
-    <%= link_to "刪除", drama_path(d), :method => :delete, :class =>"btn btn-info"%>
-    <%= link_to "xml", drama_path(d, :format => :xml), :class =>"btn btn-warning"%>
+    <%= link_to "刪除", drama_path(d), :method => :delete, :class =>"btn btn-info", :data => { :confirm => "r u sure?" }%>
+    <%= link_to "xml", drama_path(d, :format => :xml), :class =>"btn btn-warning" %>
     <%= link_to "json", drama_path(d, :format => :json), :class =>"btn btn-danger"%></br></br>
     </td>
-  </tr>
 
 <% end %>
 </table>
 <%= paginate @dramas %></br>
-<%= link_to "新增新的連續劇" ,new_drama_path, :class =>"btn btn-danger"%>
+<%= link_to "在首頁新增" ,dramas_path(:drama_new => "new",:page =>params[:page]), :class =>"btn btn-danger"%>
+<%= link_to "新增" ,new_drama_path, :class =>"btn btn-danger"%>
