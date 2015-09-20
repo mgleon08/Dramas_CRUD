@@ -11,7 +11,7 @@ class DramasController < ApplicationController
             @drama = Drama.find( params[:drama_edit] )
           end
 
-          if params[ :drama_new]
+          if params[:drama_new]
             @drama = Drama.new
           end
         }
@@ -30,8 +30,8 @@ class DramasController < ApplicationController
       flash[:notice] = "新增成功"
       redirect_to dramas_path(:page => params[:page])
     else
-      @dramas = Drama.all
-      render "index"
+      @dramas = Drama.order("id ASC").page(params[:page]).per(10)
+      render :action => :new
     end
   end
 
@@ -52,8 +52,8 @@ class DramasController < ApplicationController
       flash[:notice] = "編輯成功"
       redirect_to dramas_path(:page => params[:page])
     else
-      @dramas = Drama.all
-      render "index"
+      @dramas = Drama.order("id ASC").page(params[:page]).per(10)
+      render :action => :edit
     end
   end
 

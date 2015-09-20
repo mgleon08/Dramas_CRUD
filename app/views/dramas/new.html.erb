@@ -1,5 +1,5 @@
 
-<%= form_for @drama, :url => dramas_path do |d| %>
+<%= form_for @drama, :url => dramas_path(:page =>params[:page]) do |d| %>
     <%= render :partial => 'form', :locals => { :d => d } %>
     <%= d.submit "確定新增",  :class =>"btn btn-primary" %>
 <% end %>

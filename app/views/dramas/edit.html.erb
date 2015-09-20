@@ -1,4 +1,4 @@
-<%= form_for @drama, :url => drama_path(@drama),:method => :patch do |d| %>
+<%= form_for @drama, :url => drama_path(@drama,:page =>params[:page]),:method => :patch do |d| %>
     <%= render :partial => 'form', :locals => { :d => d } %>
     <%= d.submit "確定修改？", :class =>"btn btn-primary" %>
 <% end %>

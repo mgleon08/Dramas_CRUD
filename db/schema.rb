@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20150917120655) do
     t.string   "name"
     t.text     "description"
     t.text     "actor"
-    t.integer  "set"
     t.datetime "time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.date     "day"
+    t.integer  "set"
   end
 
 end
